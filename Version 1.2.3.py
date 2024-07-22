@@ -46,7 +46,7 @@ async def play_next(ctx):
         link = queues[ctx.guild.id].pop(0)
         await playing(ctx, link=link)
     else:
-        Current_song = "There is no song currently playing"
+        Current_song = "There is no song currently playing."
 
 # Creating a command for the bot to play audio
 
