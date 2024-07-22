@@ -123,8 +123,6 @@ async def play(ctx, *, link):
                     # Can be a playlist or a list of videos
                         video = result['entries']
 
-                        Counter = enumerate(video)
-
                     #loops entries to grab each video_url
                         for i, item in enumerate(video):
                             video = result['entries'][i]
@@ -132,8 +130,6 @@ async def play(ctx, *, link):
                             if ctx.guild.id not in queues:
                                 queues[ctx.guild.id] = []
                             queues[ctx.guild.id].append(url)
-                            await ctx.send(f"Your playlist will be ready in {Counter} songs :)")
-                            Counter += -1
                     Current_song = queues[ctx.guild.id][0]
                     link = queues[ctx.guild.id].pop(0)
                     await ctx.send("The playlist has been processed!\nUse !repair if Spotter left the voice chat :)")
