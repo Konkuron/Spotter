@@ -296,7 +296,7 @@ async def sHelp(ctx):
 
 @client.command(name="userGuide")
 async def userGuide(ctx):
-    text = "Here are some considerations when using Spotter:\n\n- Whenever a playlist is added either through !play or !queue, when using the !queuelist to inspect the list in the queue it will display each song within the playlist individually.\n\n- When adding a playlist it is recommended the playlist isn't longer than 50 songs as it increases the chances the bot could crash. (will be revised for improvement on later versions)\n\n- If you use !stop to make the bot pause the music and leave the voice chat, once it has left using the !resume command will not work for resuming the music and the queue will be cleaned so no songs will remain in queue. In order for the bot to play music you will have to use the !play command as described in !spotterCommands."
+    text = "Here are some considerations when using Spotter:\n\n- Whenever a playlist is added either through !play or !queue, when using the !queuelist to inspect the list in the queue it will display each song within the playlist individually.\n\n- If you use !stop to make the bot pause the music and leave the voice chat, once it has left using the !resume command will not work for resuming the music and the queue will be cleaned so no songs will remain in queue. In order for the bot to play music you will have to use the !play command as described in !spotterCommands."
     await ctx.send(text)
 
 #Creating a command for the bot to join a vc
