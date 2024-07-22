@@ -132,7 +132,7 @@ async def play(ctx, *, link):
                             if ctx.guild.id not in queues:
                                 queues[ctx.guild.id] = []
                             queues[ctx.guild.id].append(url)
-                            ctx.send(f"Your playlist will be ready in {Counter} songs :)")
+                            await ctx.send(f"Your playlist will be ready in {Counter} songs :)")
                             Counter += -1
                     Current_song = queues[ctx.guild.id][0]
                     link = queues[ctx.guild.id].pop(0)
