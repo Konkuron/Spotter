@@ -163,6 +163,7 @@ async def pause(ctx):
         if (voice.is_playing()):
             try:
                 voice_clients[ctx.guild.id].pause()
+                await ctx.send("The audio is now paused.")
             except Exception as e:
                 print(e)
         else: 
