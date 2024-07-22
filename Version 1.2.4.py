@@ -328,11 +328,13 @@ async def repair(ctx):
 async def loop(ctx):
     global loop
     loop = True
+    await ctx.send("The song is now looped!")
 
 #Creating a command to turn off the loop
 @client.command(name="loop_off")
 async def loop_off(ctx):
     global loop
     loop = False
+    await ctx.send("The song is no longer being looped.")
 
 client.run(APPKEYS.SPOTTER)
