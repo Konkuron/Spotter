@@ -314,6 +314,6 @@ async def join(ctx):
 @client.command(name="repair")
 async def repair(ctx):
     link= Current_song
-    play(ctx, link=link)
+    await play(ctx, link=link)
 
 client.run(APPKEYS.SPOTTER)
