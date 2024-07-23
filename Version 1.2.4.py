@@ -116,6 +116,9 @@ async def play(ctx, *, link):
 
                 song = data['url']
 
+                player = discord.FFmpegOpusAudio(song, **ffmpeg_options)
+                voice_clients[ctx.guild.id].play(player, after=lambda e: asyncio.run_coroutine_threadsafe(play_next(ctx), client.loop))
+
             elif "list" in link:
                 ydl = yt_dlp.YoutubeDL({'outtmpl': '%(id)s%(ext)s', 'quiet':True,})
                 video = ""
@@ -148,8 +151,9 @@ async def play(ctx, *, link):
                 data = await loop.run_in_executor(None, lambda: ytdl.extract_info(link, download=False))
 
                 song = data['url']
-            player = discord.FFmpegOpusAudio(song, **ffmpeg_options)
-            voice_clients[ctx.guild.id].play(player, after=lambda e: asyncio.run_coroutine_threadsafe(play_next(ctx), client.loop))
+
+                player = discord.FFmpegOpusAudio(song, **ffmpeg_options)
+                voice_clients[ctx.guild.id].play(player, after=lambda e: asyncio.run_coroutine_threadsafe(play_next(ctx), client.loop))
 
         except Exception as e:
             print(e)
@@ -303,7 +307,7 @@ async def sHelp(ctx):
 
 @client.command(name="userGuide")
 async def userGuide(ctx):
-    text = "Here are some considerations when using Spotter:\n\n- Whenever a playlist is added either through !play or !queue, when using the !queuelist to inspect the list in the queue it will display each song within the playlist individually.\n\n- If you use !stop to make the bot pause the music and leave the voice chat, once it has left using the !resume command will not work for resuming the music and the queue will be cleaned so no songs will remain in queue. In order for the bot to play music you will have to use the !play command as described in !spotterCommands.\n\n- To use the !repair command properly please wait for the playlist is finished processing (Spotter will let you know once this happens) before using the repair command.\n\n- When using the !loop command remember to then use !loop_off once you want to move on to the next song in the queue or want to turn off the bot."
+    text = "Here are some considerations when using Spotter:\n\n- Whenever a playlist is added either through !play or !queue, when using the !queuelist to inspect the list in the queue it will display each song within the playlist individually.\n\n- If you use !stop to make the bot pause the music and leave the voice chat, once it has left using the !resume command will not work for resuming the music and the queue will be cleaned so no songs will remain in queue. In order for the bot to play music you will have to use the !play command as described in !spotterCommands.\n\n- To use the !repair command properly please wait for the playlist is finished processing (Spotter will let you know once this happens) before using the repair command.\n\n- When using the !loop command remember to then use !loop_off once you want to move on to the next song in the queue or want to turn off the bot.\n\n- If for any reason Spotter stops playing music but does not leave the voice chat first use !pause to ensure the song you were playing stops correctly and then use !repair to restart that same song; if you would like to ignore that song and continue to the next one use !skip as usual."
     await ctx.send(text)
 
 #Creating a command for the bot to join a vc
